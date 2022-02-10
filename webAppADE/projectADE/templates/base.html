@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" >
+
+    <title>GeolocationApp</title>
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <!-- app icon -->
+    <link rel="shortcut icon" href='static/img/app-icon.png'>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/> 
+    <!-- css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <!-- leaflet -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+          crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <!-- ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" 
+          integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+          integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- style map -->
+    <style>
+    #mymap{
+      height: 480px;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- jinja templates -->
+    {% block body %}{% endblock %}
+    <div id='mymap'></div>
+    <div class='coordinate'></div>
+    <div> 
+      <h3>Your coordinates</h3>
+      <h4>latitude: <span id="lat"></span></h4>
+      <h4>longitude:<span id="lon"></span></h4>
+    </div> 
+    <!-- put lat and lon info into a form -->
+    <!-- <form id="myForm" action="{{ url_for ('country')}}" method="post">
+      <input type="hidden" id="latF">
+      <input type="hidden" id="lonF">
+      <button type="submit" value="Submit Comment">
+    </form> -->
+
+    <!-- create map -->
+    <script>
+      /*const mymap = L.map('mymap').setView([0,0], 1);
+      const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright"> \
+        OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+      const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      const tiles = L.tileLayer(tileUrl, { attribution });
+      tiles.addTo(mymap);
+      L.control.scale().addTo(mymap)
+      //map coordinate display
+      mymap.on('mousemove',function(e){
+        $('.coordinate').html(`Latitude: ${e.latlng.lat} Longitude: ${e.latlng.lng}`)
+    })
+      var marker
+      //create a marker on click 
+      mymap.on('click',function(e) {
+        var pos = e.latlng
+        console.log(e.latlng)
+        console.log('map click event')
+
+        marker = L.marker(pos,{icon:myIcon, draggable:true })
+        marker.on('drag', function(e) {
+          console.log('marker drag event')
+        })
+      
+        marker.on('click', L.DomEvent.stopPropagation)
+        marker.addTo(mymap)
+      })
+      //delete a marker
+      */
+    </script>
+    <br/>
+    {% block content %}{% endblock %}
+    <p>ΕΡΓΑΣΙΑ WEB APP ΓΟΜΕΛΗΣ ΦΙΛΙΠΠΟΣ ΕΝΕ44451</p>
+    <!-- map script -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></scripttype></script>
+    <!-- bootstrap js-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html> 

@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% block title %}Login Page{% endblock %}
+{% block body %}
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          {% for msg in messages %}
+            <h5>{{ msg }}</h5>
+          {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <div class = "logout-btn">
+    <a href="{{ url_for('home')}}"><img src='{{ url_for("static", filename="img/home-icon.png") }}' class="logo" alt="about" style="width:1.6em; height:1.4em;" />&nbsp;&nbsp;</a>
+    </div>
+    <h5>Hello! Welcome to GeolocationApp user login! Please fill the form down below.</h5><br>
+    <div class= "form">
+        <a href="{{ url_for ('register') }}" >Don't have an account? Sign up</a>
+        <form method = "POST" action="">
+            {{ form.hidden_tag() }}
+            {{ form.username }}<br>
+            {{ form.password }}<br>
+            {{ form.submit }}
+        </form>
+    </div>
+
+{% endblock %}

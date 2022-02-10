@@ -1,0 +1,63 @@
+{% extends "project.html" %}
+{% block body %}
+<br>
+<ul class="link">
+    <div class="authentication">
+        <!-- check if user is logged in so you redirect to dashboard -->
+        <a href="{{ url_for ('dashboard') }}"><img src='{{ url_for("static", filename="img/app-icon.png") }}' class="logo" alt="" /></a>
+    </div><br><br>
+</ul>
+<!-- <a href="{{ url_for ('dashboard') }}"><img src='{{ url_for("static", filename="img/app-icon.png") }}' class="logo" alt="" /></a> -->
+{% endblock %}
+
+{% block content %}
+<p>Welcome to {{country}}</p>
+<h4>Location information:</h4>
+<h6>{{user_info}}</h6><br>
+<h2>About your country:</h2><br>
+<h4 id = "landmark"></h4>
+<img id= "img" src='data:' width="460" height="380">
+<img id= "img2" src='data:' width="460" height="380">
+<img id= "img3" src='data:' width="460" height="380">
+<img id= "img4" src='data:' width="460" height="380"><br>
+<div class="logout-btn">
+    <br>
+    <a href="{{ url_for ('logout') }}"><img src='{{ url_for("static", filename="img/logout-icon.png") }}'
+            alt="geolocation app" style="width:1.6em; height:1.5em;" /></a>
+</div>
+<script>
+    const country = '{{ country }}'
+    const element = document.getElementById("landmark")
+    switch (country) {
+        case "Ελλάς":
+            element.innerHTML = "Ellas is a country filled with so much history and some of Europe's top landmarks. \
+            It has many ancient monuments and famous Greek landmarks that attract hoards of tourists each year. \
+            There are lots of places to visit when you are in Ellas. From enticing old temples and palaces to crumbling ruins and coastal cities, \
+            it is a must-visit country in Europe. The images are Parthenonas, monastiraki square, temple of olympian Zeus and finally Athens plaka!!!"
+            document.getElementById("img").src = '{{ url_for("static", filename="img/parthenon.png") }}'
+            document.getElementById("img2").src = '{{ url_for("static", filename="img/monastiraki.png") }}'
+            document.getElementById("img3").src = '{{ url_for("static", filename="img/stiles.png") }}'
+            document.getElementById("img4").src = '{{ url_for("static", filename="img/plaka.png") }}'
+            break;
+        case "United States":
+            element.innerHTML = "From coastlines to big cities, the United States is made up of so many diverse destinations that it's hard to decide which places \
+            deserve the distinction of the best in America. That's why U.S. News considered a variety of factors, such as attractions, accommodations and dining  \
+            options, as well as votes from thousands of travelers, to determine the best places to visit in the USA. Use this list for your vacation planning, and \
+            cast your vote below to have a say in next year's list. You should definitely visit the Grand-Kanyon, the Hawaiian Island Maui, New York and dont forget Boston!!!"
+            document.getElementById("img").src = '{{ url_for("static", filename="img/grand-kanyon.png") }}'
+            document.getElementById("img2").src = '{{ url_for("static", filename="img/maui.png") }}'
+            document.getElementById("img3").src = '{{ url_for("static", filename="img/new-york.png") }}'
+            document.getElementById("img4").src = '{{ url_for("static", filename="img/boston.png") }}'
+            break;
+        case "Germany":
+            // get Germany info and pictures
+            break;
+        case "Italy":
+            // get Italy info and pictures
+            break;
+        case "France":
+             // get France info and pictures 
+            break;
+        }
+</script>
+{% endblock %}

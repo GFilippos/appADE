@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block body %}
+<!-- <h5>Hello {{user}}!</h5> -->
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+          {% for msg in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <h5>{{ msg }}</h5>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+          {% endfor %}
+      {% endif %}
+{% endwith %}
+<button class="sidebar-toggle">
+    <i class="fas fa-bars"></i>
+</button>
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <a href="{{ url_for ('dashboard') }}"><img src='{{ url_for("static", filename="img/app-icon.png") }}'
+                class="logo" alt="" /></a>
+        <button class="close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <!-- links -->
+    <ul class="links">
+        <li>
+            <a href="{{ url_for ('project') }}"><img src='{{ url_for("static", filename="img/geolocation-icon.png") }}'
+                    class="logo" alt="geolocation app" />
+                &nbsp;&nbsp;Get your location</a>
+        </li>
+        <li>
+            <a href="{{ url_for ('about') }}"><img src='{{ url_for("static", filename="img/about-icon.png") }}'
+                    class="logo" alt="about" />
+                &nbsp;&nbsp;about</a>
+        </li>
+        <!-- <li>
+                <a href="{{ url_for ('distance') }}"><img src='{{ url_for("static", filename="img/distance-icon.png") }}' class="logo" alt="calc-distance" />
+                    &nbsp;&nbsp;Calculate Distance</a>
+            </li>
+            <li>
+                <a href="{{ url_for ('country') }}"><img src='{{ url_for("static", filename="img/flag-icon.png") }}' class="logo" alt="country-info" />
+                    &nbsp;&nbsp;Get country information</a>
+            </li>
+            <li>
+                <button><a href='{{ url_for("static", filename="img/flag-icon.png") }}' class="logo" alt="country-info" >Get country information</a></button>
+            </li> -->
+    </ul>
+</aside>
+<ul class="link">
+    <div class="authentication">
+        <!-- check if user is logged in so you redirect to dashboard -->
+        <a href="{{ url_for('home') }}"><img src='{{ url_for("static", filename="img/app-icon.png") }}' class="logo"
+                alt="home" style="width:1.6em; height:1.5em;" /></a>
+    </div>
+</ul>
+<div class="logout-btn">
+    <br>
+    <a href="{{ url_for ('logout') }}"><img src='{{ url_for("static", filename="img/logout-icon.png") }}'
+            alt="geolocation app" style="width:1.6em; height:1.5em;" /></a>
+</div>
+<!-- javascript -->
+<script src="{{url_for('static', filename='js/app.js')}}"></script>
+<script src="{{url_for('static', filename='js/getCountry.js')}}"></script>
+<script>
+    // everytime alert shows up
+    $('.alert').fadeTo(1500, 600).slideUp(600, function(){
+        $('.alert').slideUp(600);
+    });
+</script>
+{% endblock %}

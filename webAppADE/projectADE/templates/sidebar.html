@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block body %}
+   
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <h5>{{ msg }}</h5>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+    <br>
+    <button class="sidebar-toggle">
+      <i class="fas fa-bars"></i>
+    </button>&nbsp;
+    <div class="authentication">
+      <a href="{{ url_for ('login') }}"><i class="fa fa-fw fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;Login</a>
+    </div>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <!-- <a href="home.html"><img src='static/app-icon.png' class="logo" alt="" /></a> -->
+        <a href="{{ url_for ('home') }}"><img src='{{ url_for("static", filename="img/app-icon.png") }}' class="logo" alt="" /></a>
+        <button class="close-btn"><i class="fas fa-times"></i></button>
+      </div>
+      <!-- links -->
+      <ul class="links">
+        <!-- <li>
+          <a href="{{ url_for ('project') }}"><img src='{{ url_for("static", filename="img/geolocation-icon.png") }}' class="logo" alt="geolocation app" />&nbsp;&nbsp;Get your location</a>
+        </li> -->
+        <li>
+          <a href="{{ url_for ('about') }}"><img src='{{ url_for("static", filename="img/about-icon.png") }}' class="logo" alt="about" />&nbsp;&nbsp;about</a>
+        </li>
+      </ul>
+    </aside>
+    <!-- javascript -->
+    <script src="{{url_for('static', filename='js/app.js')}}"></script>
+    <script>
+      // everytime alert shows up
+      $('.alert').fadeTo(1500, 600).slideUp(600, function(){
+          $('.alert').slideUp(600);
+      });
+  </script>
+{% endblock %}
