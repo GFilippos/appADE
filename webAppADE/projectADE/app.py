@@ -7,8 +7,10 @@ from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 from datetime import timedelta
 import nominatim
-
-
+from geopy import Nominatim
+from unidecode import unidecode
+from nominatim import reverseGeo
+import requests 
 
 app = Flask(__name__)
 
@@ -126,12 +128,25 @@ def distance():
 
 @app.route("/country", methods = ['POST', 'GET'])
 def country():
-    # get the country from nominatim and display info
-    # if request.method == "POST":
-    #     latitude = request.form.get['latF']
-    #     longitude = request.form.get['lonF']
-    country = nominatim.countryN 
-    user_info = nominatim.user_info
+    
+    if (request.args.get("lat")):
+        lat = request.args.get("lat")
+        lon =  request.args.get("lon")
+        data = [lat,lon]
+        session["latlon"] = [lat,lon]
+        print("session:", session["latlon"])
+    else:
+        if ("latlon" in session.keys()):
+            data = session["latlon"]
+        else:
+            data=[27.000,27.0000]
+
+    
+    country, user_info = reverseGeo(data)
+    #session['userData'] = user_data 
+    # user_data function
+    # country = nominatim.countryN 
+    # user_info = nominatim.user_info
     return render_template('country.html', country=country, user_info=user_info)
 
 
