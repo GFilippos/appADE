@@ -1,5 +1,5 @@
 // user geolocation
-if('geolocation' in navigator) {
+if ('geolocation' in navigator) {
     console.log("geolocation available");
     navigator.geolocation.getCurrentPosition(position => {
         //testing purposes
@@ -9,12 +9,14 @@ if('geolocation' in navigator) {
         console.log(position)
         document.getElementById('lat').textContent = lat
         document.getElementById('lon').textContent = lon
-        // document.getElementById('latF').textContent = lat
-        // document.getElementById('lonF').textContent = lon
-        //document.forms[0].submit()
+        
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "http://127.0.0.1:5000/country?lat="+lat+"&lon="+lon);
+        xhttp.send();
+
         //create marker
         const data = [lat, lon]
-        const marker = L.marker([lat, lon], {icon:myIcon, draggable:true})
+        const marker = L.marker([lat, lon], { icon: myIcon, draggable: true })
         const featureGroup = L.featureGroup([marker]).addTo(mymap)
         mymap.fitBounds(featureGroup.getBounds())
         // L.marker([lat, lon], {icon:myIcon, draggable:true}).addTo(mymap);
